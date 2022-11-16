@@ -1,0 +1,68 @@
+version: "3.5"
+services:
+  app:  
+    image: vcp
+    build: 
+      context: ./
+      dockerfile: Dockerfile
+    container_name: vcp
+    environment: 
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=Hernamstein4148
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SPRING_JPA_SHOW_SQL=true  
+    ports: 
+        - 8005:8080
+    networks:
+      - net
+      - default
+      
+  db:
+    image: postgres:13.1-alpine
+    container_name: db
+    restart: unless-stopped
+    ports: 
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: Hernamstein4148
+      POSTGRES_USER: postgres
+    networks:
+      - net
+      - default
+  
+  frontend-angular:
+    image: vcp-front1.0
+    working_dir: /usr/src/app
+    build: 
+      context: ./visualizadorCaidaPrecipitaciones
+      dockerfile: Dockerfile
+    container_name: front-2
+    volumes: 
+      - ./visualizadorCaidaPrecipitaciones:/usr/src/app
+    networks: 
+      - net
+      - default
+    ports: 
+      - "4201:4200"
+    command: sh -c "npm run start"
+    #tty: true
+
+  # front:
+  #   image: "node:16"
+  #   container_name: frontend-angular
+  #   working_dir: /usr/src/app
+  #   volumes:
+  #     - ./visualizadorCaidaPrecipitaciones:/usr/src/app
+  #   ports:
+  #     - "4201:4200"
+  #   command: sh -c "npm start"
+  #   #command: bash -c "npm install && npm start"
+  #   networks:
+  #     - net
+  #     - default
+
+networks:
+  net:
+    name: net
+    driver: bridge
