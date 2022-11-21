@@ -27,4 +27,10 @@ public class RegisterServiceImpl implements IRegisterService{
 		return registerDao.findById(id).orElse(null);
 	}
 
+	@Override
+	public void register(Register register) {
+		registerDao.save(register);
+		System.out.println("register");
+	}
+
 }

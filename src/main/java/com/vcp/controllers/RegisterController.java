@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vcp.models.Register;
@@ -22,7 +24,22 @@ public class RegisterController {
 	
 	@GetMapping("/test")
 	public int test(){
-		return 2;
+		return 33333;
+	}
+	
+	@PostMapping("/register")
+	//public String register() {
+	public int register(@RequestBody Register register) {
+		int statusCode;
+		try {
+			statusCode=200;
+			registerService.register(register);
+			return statusCode;
+		}catch(Exception e){
+			System.out.println("No se pudo guardar: "+e);
+			statusCode=500;
+			return statusCode;
+		}
 	}
 	
 	@GetMapping("/listar/{id}")

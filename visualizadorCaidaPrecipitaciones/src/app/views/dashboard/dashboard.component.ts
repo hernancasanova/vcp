@@ -25,11 +25,13 @@ export class DashboardComponent implements OnInit {
   constructor(private chartsData: DashboardChartsData) {
   }
 
-  registers: Array<any> = [
+  registers2: Array<any> = [
     {date: '01-11-2022', condition: 'lluvia', amount: '5'},//todos los eventos se miden en ml
     {date: '02-11-2022', condition: 'sol', amount: '0'},
     {date: '02-11-2022', condition: 'lluvia', amount: '0'},
-  ]
+  ];
+
+  registers: Array<any> = [];
 
   public users: IUser[] = [
     {
@@ -119,10 +121,16 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.initCharts();
+    this.loadRegisters();
   }
 
   initCharts(): void {
     this.mainChart = this.chartsData.mainChart;
+  }
+
+  async loadRegisters(): Promise<void> {
+    this.registers=await fetch("http://localhost:8005/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
+    //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
   }
 
   setTrafficPeriod(value: string): void {

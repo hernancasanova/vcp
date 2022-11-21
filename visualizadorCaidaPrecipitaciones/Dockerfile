@@ -12,8 +12,6 @@ copy . .
 
 #EXPOSE 4201 
 
-#CMD ["npm" , "install"]
-
 
 # FROM node:16 as node
 # WORKDIR /app

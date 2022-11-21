@@ -11,7 +11,9 @@ services:
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=Hernamstein4148
       - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_JPA_SHOW_SQL=true  
+      - SPRING_JPA_SHOW_SQL=true
+    volumes:
+      - ./src/main/java/com/vcp:/var
     ports: 
         - 8005:8080
     networks:
@@ -45,7 +47,7 @@ services:
       - default
     ports: 
       - "4201:4200"
-    command: sh -c "npm run start"
+    command: sh -c "npm install && npm start"
     #tty: true
 
   # front:
