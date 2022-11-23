@@ -1,0 +1,32 @@
+<div class="card">
+    <div class="card-header">
+        <h2>Register condition</h2>
+    </div>
+    <div class="card-body">
+        <form [formGroup]="registerForm" action="">
+            <div class="row">
+                <div class="col-4">
+                    <label for="fecha">
+                        Fecha:
+                        <input type="date" id="fecha"  formControlName="fecha" >
+                    </label>
+                </div>
+                <div class="col-4">
+                    <label for="condicion">
+                        Condición:
+                        <input type="text" id="condicion" formControlName="condicion" >
+                    </label>
+                </div>
+                <div class="col-4">
+                    <label for="cantidad">
+                        Cantidad (ml):
+                        <input type="number" id="cantidad" formControlName="cantidad" >
+                    </label>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="card-footer">
+        <button type="button" (click)="registerCondition()"  small class="btn btn-primary btn-sm float-right">Registrar</button>
+    </div>
+</div>

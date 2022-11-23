@@ -46,7 +46,8 @@ import {
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { VisualizerComponent } from './views/visualizer/visualizer.component';
-
+import { RegisterConditionComponent } from './views/register-condition/register-condition.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
@@ -58,7 +59,7 @@ const APP_CONTAINERS = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...APP_CONTAINERS, VisualizerComponent],
+  declarations: [AppComponent, ...APP_CONTAINERS, VisualizerComponent, RegisterConditionComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -86,6 +87,7 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
+    NgbModule,
   ],
   providers: [
     {

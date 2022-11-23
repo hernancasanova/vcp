@@ -13,7 +13,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Registrar condición diaria',
-    url: '/register',
+    url: '/register_condition',
     iconComponent: { name: 'cil-pencil' },
     // iconComponent: { name: 'cil-speedometer' },
     // badge: {

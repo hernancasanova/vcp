@@ -7,6 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { VisualizerComponent } from './views/visualizer/visualizer.component';
+import { RegisterConditionComponent } from './views/register-condition/register-condition.component';
 
 const routes: Routes = [
   {
@@ -31,10 +32,17 @@ const routes: Routes = [
         loadChildren: () =>
           import('./views/theme/theme.module').then((m) => m.ThemeModule)
       },
+      // {
+      //   path: 'register_condition',
+      //   loadChildren: () =>
+      //     import('./views/theme/theme.module').then((m) => m.ThemeModule)
+      // },
       {
         path: 'register_condition',
-        loadChildren: () =>
-          import('./views/theme/theme.module').then((m) => m.ThemeModule)
+        component: RegisterConditionComponent,
+        data: {
+          title: 'Register condition'
+        }
       },
       {
         path: 'visualizer',
