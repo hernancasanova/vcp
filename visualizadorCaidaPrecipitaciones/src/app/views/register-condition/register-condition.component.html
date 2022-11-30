@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <h2>Register condition</h2>
+        <h2>Registrar condición</h2>
     </div>
     <div class="card-body">
         <form [formGroup]="registerForm" action="">
@@ -26,7 +26,25 @@
             </div>
         </form>
     </div>
-    <div class="card-footer">
+    <!-- <div class="card-footer">
         <button type="button" (click)="registerCondition()"  small class="btn btn-primary btn-sm float-right">Registrar</button>
+    </div> -->
+    <!-- <div class="spinner-border" role="status">
+        <span class="sr-only">Loading...</span>
+    </div> -->
+    <!-- <ngb-datepicker #d></ngb-datepicker> -->
+    <div class="footer">
+        <div *ngIf="!registrando; else elseBlock">
+            <button type="button" (click)="registerCondition()"  small class="btn btn-primary btn-sm float-right">Registrar</button>
+            <!-- <button cButton class="m-1" disabled >
+                <c-spinner aria-hidden="true" size="sm" ></c-spinner>
+            </button> -->
+        </div>
+        <ng-template #elseBlock>
+            <button small class="btn btn-primary btn-sm float-right">
+                <c-spinner aria-hidden="true" size="sm"></c-spinner>
+                Registrando... 
+            </button>
+        </ng-template>
     </div>
 </div>

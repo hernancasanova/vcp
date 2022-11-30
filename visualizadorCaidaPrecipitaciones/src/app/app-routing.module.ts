@@ -38,14 +38,14 @@ const routes: Routes = [
       //     import('./views/theme/theme.module').then((m) => m.ThemeModule)
       // },
       {
-        path: 'register_condition',
+        path: 'registrar_condicion',
         component: RegisterConditionComponent,
         data: {
-          title: 'Register condition'
+          title: 'Registrar condición'
         }
       },
       {
-        path: 'visualizer',
+        path: 'visualizador',
         component: VisualizerComponent
       },
       {

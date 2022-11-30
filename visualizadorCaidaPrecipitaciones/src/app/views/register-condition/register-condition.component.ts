@@ -9,6 +9,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class RegisterConditionComponent implements OnInit {
 
+  registrando: boolean = false;
   registerForm = new FormGroup({
     cantidad: new FormControl(''),
     condicion: new FormControl(''),
@@ -20,8 +21,10 @@ export class RegisterConditionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
   async registerCondition(): Promise<void> 
   {
+    this.registrando=true;
     let register: any = {};
     register.cantidad=(document.getElementById('cantidad') as HTMLInputElement).value;
     register.condicion=(document.getElementById('condicion') as HTMLInputElement).value;
@@ -36,7 +39,7 @@ export class RegisterConditionComponent implements OnInit {
                         },
                         })
                         .then(x=>x.json())
-                        .then(x=>x)
+                        .then(x=>{setTimeout(()=>{},2000);this.registrando=false; return x;})
                         .catch(error=>console.log(error));
     console.log("response: ",response)
   }
