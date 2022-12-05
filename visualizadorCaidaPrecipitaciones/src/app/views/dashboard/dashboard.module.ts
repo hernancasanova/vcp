@@ -11,6 +11,7 @@ import {
   GridModule,
   NavModule,
   ProgressModule,
+  SpinnerModule,
   TableModule,
   TabsModule
 } from '@coreui/angular';
@@ -21,6 +22,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 
 import { WidgetsModule } from '../widgets/widgets.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   imports: [
@@ -40,7 +42,9 @@ import { WidgetsModule } from '../widgets/widgets.module';
     ChartjsModule,
     AvatarModule,
     TableModule,
-    WidgetsModule
+    WidgetsModule,
+    FontAwesomeModule,
+    SpinnerModule
   ],
   declarations: [DashboardComponent]
 })
