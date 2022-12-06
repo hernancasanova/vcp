@@ -40,6 +40,7 @@
     "chart.js": "^3.7.1",
     "highcharts": "^10.3.1",
     "highcharts-angular": "^3.0.0",
+    "luxon": "^3.1.1",
     "ngx-perfect-scrollbar": "^10.1.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",

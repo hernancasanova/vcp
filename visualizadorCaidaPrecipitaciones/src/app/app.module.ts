@@ -47,8 +47,8 @@ import {
 import {RegisterConditionModule} from '../app/views/register-condition/register-condition.module';
 import {VisualizerModule} from "./views/visualizer/visualizer.module"
 import { IconModule, IconSetService } from '@coreui/icons-angular';
-//import { VisualizerComponent } from './views/visualizer/visualizer.component';
-import { RegisterConditionComponent } from './views/register-condition/register-condition.component';
+import {HttpClientModule} from '@angular/common/http';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
@@ -93,7 +93,8 @@ const APP_CONTAINERS = [
     NgbModule,
     RegisterConditionModule,
     ChartModule,
-    VisualizerModule
+    VisualizerModule,
+    HttpClientModule
   ],
   providers: [
     {

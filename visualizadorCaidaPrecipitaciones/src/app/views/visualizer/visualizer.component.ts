@@ -17,11 +17,12 @@ export class VisualizerComponent implements OnInit {
   registers: Array<any>=[];
 
   ngOnInit(): void {
+    console.log("datetime: ",Date())
     this.deployrConditions();
   }
 
   data: number[] = [];
-  categories: string[] = [];
+  categories: any[] = [];
 
   async deployrConditions(): Promise<void> 
   {
@@ -33,7 +34,8 @@ export class VisualizerComponent implements OnInit {
     // let d: keyof this.registers;
     for(let d of this.registers){
       this.data.push(d.cantidad)
-      this.categories.push(d.fecha)
+      let date: any = new Date(d.fecha).toLocaleDateString(); 
+      this.categories.push(date)
     }
   }
   chart = new Chart({
