@@ -1,31 +1,28 @@
-<table cTable>
-  <thead cTableColor="dark">
-  <tr>
-  <th scope="col">#</th>
-  <th scope="col">Fecha</th>
-  <th scope="col">Condición</th>
-  <th scope="col">Cantidad aproximada (ml)</th>
-  </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let register of registers; index  as i ">
-      <td>{{i+1}}</td>
-      <td>{{register.fecha}}</td>
-      <td>{{register.condicion}}</td>
-      <td>{{register.cantidad}}</td>
+<div *ngIf="registers.length>0; else elseBlock">
+  <table cTable>
+    <thead cTableColor="dark">
+    <tr>
+    <th scope="col">#</th>
+    <th scope="col">Fecha</th>
+    <th scope="col">Condición</th>
+    <th scope="col">Cantidad aproximada (ml)</th>
+    <th scope="col">Acciones</th>
     </tr>
-  <!-- <tr>
-  <th scope="row">1</th>
-  <td>Mark</td>
-  <td>Otto</td>
-  <td>@mdo</td>
-  </tr>
-  <tr>
-  <th scope="row">2</th>
-  <td>Jacob</td>
-  <td>Thornton</td>
-  <td>@fat</td>
-  </tr> -->
-  </tbody>
+    </thead>
+    <tbody>
+      <tr *ngFor="let register of registers; index  as i ">
+        <td>{{i+1}}</td>
+        <td>{{register.fecha}}</td>
+        <td>{{register.condicion}}</td>
+        <td>{{register.cantidad}}</td>
+        <td><i class="fa fa-pencil"></i></td>
+      </tr>
+    </tbody>
   </table>
+</div>
+<ng-template #elseBlock>
+  <c-spinner aria-hidden="true" size="sm"></c-spinner>
+        Loading... 
+</ng-template>
+
 
