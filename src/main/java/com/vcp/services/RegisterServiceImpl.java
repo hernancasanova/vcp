@@ -3,6 +3,7 @@ package com.vcp.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,7 +19,7 @@ public class RegisterServiceImpl implements IRegisterService{
 	@Override
 	@Transactional(readOnly=true)
 	public List<Register> findAll() {
-		return (List<Register>)registerDao.findAll();
+		return (List<Register>)registerDao.findAll(Sort.by(Sort.Direction.ASC, "fecha"));
 	}
 
 	@Override
@@ -31,6 +32,13 @@ public class RegisterServiceImpl implements IRegisterService{
 	public void register(Register register) {
 		registerDao.save(register);
 		System.out.println("register");
+	}
+
+	@Override
+	public List<Register> edit(Long id) {
+		// PARTE DONDE SE DEBE EDITAR
+		Register registerEdited = this.findById(id);
+		return (List<Register>)registerDao.findAll();
 	}
 
 }

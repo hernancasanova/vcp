@@ -27,6 +27,20 @@ public class RegisterController {
 		return 33333;
 	}
 	
+	@GetMapping("/edit/{id}")
+	public int edit(@PathVariable Long id) {
+		int statusCode;
+		try {
+			statusCode=200;
+			registerService.edit(id);
+			return statusCode;
+		}catch(Exception e){
+			System.out.println("No se pudo editar: "+e);
+			statusCode=500;
+			return statusCode;
+		}
+	}
+	
 	@PostMapping("/register")
 	//public String register() {
 	public int register(@RequestBody Register register) {

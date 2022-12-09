@@ -15,7 +15,8 @@
         <td>{{register.fecha}}</td>
         <td>{{register.condicion}}</td>
         <td>{{register.cantidad}}</td>
-        <td><i class="fa fa-pencil"></i></td>
+        <!-- <td>5</td> -->
+        <td><fa-icon title="Editar" [routerLink]="['/editar_condicion/',register.id]" class="btnEdit" [icon]="faEdit"></fa-icon></td>
       </tr>
     </tbody>
   </table>

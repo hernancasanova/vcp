@@ -45,6 +45,13 @@ const routes: Routes = [
         }
       },
       {
+        path: 'editar_condicion/:id',
+        component: RegisterConditionComponent,
+        data: {
+          title: 'Editar condición'
+        }
+      },
+      {
         path: 'visualizador',
         component: VisualizerComponent
       },

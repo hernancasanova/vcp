@@ -23,6 +23,7 @@ import { DashboardComponent } from './dashboard.component';
 
 import { WidgetsModule } from '../widgets/widgets.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -44,7 +45,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     TableModule,
     WidgetsModule,
     FontAwesomeModule,
-    SpinnerModule
+    SpinnerModule,
+    FontAwesomeModule,
+    HttpClientModule
   ],
   declarations: [DashboardComponent]
 })

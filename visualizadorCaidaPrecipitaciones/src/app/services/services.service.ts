@@ -9,7 +9,15 @@ export class ServicesService {
 
   constructor(private http: HttpClient) { }
 
-  // public getRegisters():Observable<any>{
-  //   return this.http.get()
-  // }
+  public getRegisters():Observable<any>{
+    //return this.http.get('https://rickandmortyapi.com/api/character');
+    //return this.http.get('http://localhost:8005/listar');
+    return this.http.get('http://localhost:8005/listar');
+  }
+
+  public getRegister(id:string):Observable<any>{
+    //return this.http.get('https://rickandmortyapi.com/api/character');
+    //return this.http.get('http://localhost:8005/listar');
+    return this.http.get('http://localhost:8005/listar/'+id);
+  }
 }

@@ -8,6 +8,7 @@
                 <div class="col-4">
                     <label for="fecha">
                         Fecha:
+                        <input type="hidden" name="id" value="{{id}}">
                         <input type="date" id="fecha"  formControlName="fecha" >
                     </label>
                 </div>
@@ -33,7 +34,7 @@
         <span class="sr-only">Loading...</span>
     </div> -->
     <!-- <ngb-datepicker #d></ngb-datepicker> -->
-    <div class="footer">
+    <div class="card-footer">
         <div *ngIf="!registrando; else elseBlock">
             <button type="button" (click)="registerCondition()"  small class="btn btn-primary btn-sm float-right">Registrar</button>
             <!-- <button cButton class="m-1" disabled >

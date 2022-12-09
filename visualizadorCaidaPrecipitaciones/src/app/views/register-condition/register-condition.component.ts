@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ServicesService } from 'src/app/services/services.service';
 
 @Component({
   selector: 'app-register-condition',
@@ -16,9 +18,32 @@ export class RegisterConditionComponent implements OnInit {
     fecha: new FormControl(''),
   });
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute, private service: ServicesService) { }
 
   ngOnInit(): void {
+    this.cargarCondicion();
+  }
+
+  id:number=0;
+  r:any;
+  cargarCondicion(): void {
+    this.activatedRoute.params.subscribe(
+      e=>{
+        let id = e['id'];
+        if(id){
+          this.service.getRegister(id).subscribe(r=>{
+            console.log("register: ",r)
+            this.id=r.id
+            this.registerForm.setValue({
+              cantidad: r.cantidad,
+              condicion: r.condicion,
+              fecha:r.fecha
+            })
+          });
+        }
+        console.log("Seteando el formulario")
+      }
+    )
   }
 
 
@@ -26,6 +51,9 @@ export class RegisterConditionComponent implements OnInit {
   {
     this.registrando=true;
     let register: any = {};
+    if(this.id!=0){
+      register.id=this.id;
+    }
     register.cantidad=(document.getElementById('cantidad') as HTMLInputElement).value;
     register.condicion=(document.getElementById('condicion') as HTMLInputElement).value;
     register.fecha=(document.getElementById('fecha') as HTMLInputElement).value;

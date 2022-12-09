@@ -54,6 +54,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
 };
 import { ChartModule } from 'angular-highcharts';
+import { ServicesService } from './services/services.service';
 //import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 const APP_CONTAINERS = [

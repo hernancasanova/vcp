@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 import { DashboardChartsData, IChartProps } from './dashboard-charts-data';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import {ServicesService} from '../../services/services.service'
 
 interface IUser {
   name: string;
@@ -22,16 +24,11 @@ interface IUser {
   styleUrls: ['dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  constructor(private chartsData: DashboardChartsData) {
+  constructor(private chartsData: DashboardChartsData, private service: ServicesService ) {
   }
 
-  registers2: Array<any> = [
-    {date: '01-11-2022', condition: 'lluvia', amount: '5'},//todos los eventos se miden en ml
-    {date: '02-11-2022', condition: 'sol', amount: '0'},
-    {date: '02-11-2022', condition: 'lluvia', amount: '0'},
-  ];
 
-  registers: Array<any> = [];
+  public registers: Array<any> = [];
 
   public users: IUser[] = [
     {
@@ -122,12 +119,38 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.initCharts();
     this.loadRegisters();
+    //this.alertando();
+    this.service.getRegisters().subscribe(r => {
+      //return r.results;
+      console.log("r: ",r);
+      this.h = r.results;
+      console.log("this.h: ",this.h)}
+    );
+    //this.h=this.service.getRegisters();
+    //alert("alertando")
+    //console.log("r: ",this.h)
   }
 
   initCharts(): void {
     this.mainChart = this.chartsData.mainChart;
   }
 
+  faEdit = faEdit;
+
+  h:any={};
+
+  alertando():void{
+    //let r:any=this.service.getRegisters().subscribe(result=>{
+    this.service.getRegisters().subscribe(r => {
+      //return r.results;
+      //console.log("r: ",r)
+      this.h = r.results;
+      console.log("this.h: ",this.h)
+    }); 
+    //alert("alertando")
+
+  }
+  
   async loadRegisters(): Promise<void> {
     this.registers=await fetch("http://localhost:8005/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
     //this.registers=await fetch("http://localhost:4000/listar").then(x=>x.json()).then(y=>y).catch(error=>console.log(error));
