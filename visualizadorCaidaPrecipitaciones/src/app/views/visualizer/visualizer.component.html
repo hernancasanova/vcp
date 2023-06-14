@@ -5,15 +5,14 @@
 >
 </highcharts-chart> -->
 <div *ngIf="data.length>0; else elseBlock">
-    <div [chart]="chart"></div>
-    <!-- <button cButton class="m-1" disabled >
-        <c-spinner aria-hidden="true" size="sm" ></c-spinner>
-    </button> -->
+  <div [chart]="chart"></div>
+  <!-- <button cButton class="m-1" disabled >
+      <c-spinner aria-hidden="true" size="sm" ></c-spinner>
+  </button> -->
+  <video id="video" width="100%" height="260px" src="" controls autoplay>nin</video>
 </div>
 <ng-template #elseBlock>
-    <button small class="btn btn-primary btn-sm float-right">
-        <c-spinner aria-hidden="true" size="sm"></c-spinner>
-        Loading... 
-    </button>
+      <c-spinner aria-hidden="true" size="sm"></c-spinner>
+      Loading...
 </ng-template>
 

@@ -39,7 +39,7 @@ services:
     build: 
       context: ./visualizadorCaidaPrecipitaciones
       dockerfile: Dockerfile
-    container_name: front-2
+    container_name: front-angular
     volumes: 
       - ./visualizadorCaidaPrecipitaciones:/usr/src/app
     networks: 

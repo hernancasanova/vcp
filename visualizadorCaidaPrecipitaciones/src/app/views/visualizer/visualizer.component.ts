@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 //import Highcharts = require('highcharts');
 //import { HighchartsChartModule } from 'highcharts-angular';
 import { Chart } from 'angular-highcharts';
+import * as Highcharts from 'highcharts';
+import { Point } from 'highcharts';
+ //import * as Highcharts from 'highcharts';
+// import { chart, Point } from 'highcharts';
 
 @Component({
   selector: 'app-visualizer',
@@ -11,17 +15,18 @@ import { Chart } from 'angular-highcharts';
   //imports: [HighchartsChartModule],
 })
 export class VisualizerComponent implements OnInit {
-
-  constructor() { }
+  video: any | undefined;
+  chart: any;
+  colors = Highcharts.getOptions().colors
+  constructor() {
+    this.deployrConditions();
+  }
 
   registers: Array<any>=[];
 
   ngOnInit(): void {
-    console.log("datetime: ",Date())
-    this.deployrConditions();
   }
-
-  data: number[] = [];
+  data: any[] = [];
   categories: any[] = [];
 
   async deployrConditions(): Promise<void> 
@@ -31,56 +36,64 @@ export class VisualizerComponent implements OnInit {
                         .then(x=> x)
                         .catch(error=>console.log(error));
 
-    // let d: keyof this.registers;
     for(let d of this.registers){
-      this.data.push(d.cantidad)
-      let date: any = new Date(d.fecha).toLocaleDateString(); 
-      this.categories.push(date)
+      this.data.push({y:d.cantidad,color:d.vid?"#8085e9":'#f15c80'}) 
+      let date: any = d.fecha; 
+      let newdate = date.split("-").reverse().join("-");
+      this.categories.push(newdate)
     }
-  }
-  chart = new Chart({
-    chart: {
-      type: 'line'
-    },
-    title: {
-      text: 'Caida de precipitaciones'
-    },
-    credits: {
-      enabled: false
-    },
-    series: [
-      {
-        name: 'ml',
-        type: 'line',
-        data: this.data
-      }
-    ],
-    yAxis: {
+    Highcharts.setOptions({
+        time: {
+          useUTC: false
+        }
+    })
+    this.chart = new Chart({
+      chart: {
+        type:'scatter'
+      },
+      plotOptions:{
+        series: {
+          point: {
+            events: {
+              click(e) {
+                document.getElementById("video")?.setAttribute("src","http://localhost:4201/assets/videos/"+(e.point.category.toString().replace(/\//g,""))+".mp4")
+              }
+            }
+          }
+        }
+      },
       title: {
-          text: 'ml'
+        text: 'Caida de precipitaciones'
+      },
+      credits: {
+        enabled: false
+      },
+      tooltip:{
+        formatter:function() {
+              return '<b>'+this.y+' ml<br>'+this.point.category+'</b>';
       }
-    },
-    xAxis: {
-      //type: "datetime",
-      //categories: ["H","E","R"],
-      categories:this.categories
+      },
+      series: [
+        {
+          type: 'scatter',
+          name: 'Con video',
+          data: this.data,
+          color:"#8085e9"
+        },{type:'scatter',name:"Sin video", data:[{}], color:"#f15c80", marker:{symbol:"circle"}  }
+
+      ],
+      yAxis: {
+        title: {
+            text: 'ml'
+        }
+      },
+      xAxis: {
+        type: "datetime",
+        categories:this.categories
+      },
+      legend:{
+        enabled:true
+      }
+    });
   }
-  });
-
-
-
-  // Highcharts = Highcharts;
-  // linechart: any = {
-  //   series: [
-  //     {
-  //       data: [1, 2, 3],
-  //     },
-  //   ],
-  //   chart: {
-  //     type: 'line',
-  //   },
-  //   title: {
-  //     text: 'linechart',
-  //   },
-  // };
 }

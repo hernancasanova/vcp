@@ -16,6 +16,11 @@ import javax.persistence.TemporalType;
 @Table(name="registers")
 public class Register implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1235130408536499618L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -27,6 +32,18 @@ public class Register implements Serializable {
 	private String condicion;
 	
 	private int cantidad;
+    
+	
+	@Column(name="vid")
+	private boolean vid;
+	
+	public boolean isVid() {
+		return vid;
+	}
+
+	public void setVid(boolean vid) {
+		this.vid = vid;
+	}
 
 	public Long getId() {
 		return id;
@@ -60,6 +77,6 @@ public class Register implements Serializable {
 		this.cantidad = cantidad;
 	}
 	
-	private static final long serialVersionUID = -4156389239957958505L;
+	
 	
 }
