@@ -29,9 +29,14 @@ public class RegisterServiceImpl implements IRegisterService{
 	}
 
 	@Override
-	public void register(Register register) {
-		registerDao.save(register);
-		System.out.println("register");
+	public Long register(Register register) {
+		Register reg = registerDao.save(register);
+		registerDao.flush();
+		return reg.getId();
+		//Bovine bov = bovineDao.save(bovine);
+		//bovineDao.flush();
+		//return bov.getId();
+		//System.out.println("register");
 	}
 
 	@Override

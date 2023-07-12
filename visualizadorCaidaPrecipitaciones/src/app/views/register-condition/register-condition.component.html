@@ -4,27 +4,33 @@
     </div>
     <div class="card-body">
         <form [formGroup]="registerForm" action="">
-            <div class="row">
-                <div class="col-4">
+            <!-- <div class="row"> -->
+                <div class=" row form-group mb-2">
                     <label for="fecha">
                         Fecha:
                         <input type="hidden" name="id" value="{{id}}">
-                        <input type="date" id="fecha"  formControlName="fecha" >
+                        <input type="date" id="fecha" class="form-control"  formControlName="fecha" >
                     </label>
                 </div>
-                <div class="col-4">
+                <div class="row form-group mb-2">
                     <label for="condicion">
                         Condición:
-                        <input type="text" id="condicion" formControlName="condicion" >
+                        <input type="text" id="condicion" class="form-control" formControlName="condicion" placeholder="Ej: Despejado" >
                     </label>
                 </div>
-                <div class="col-4">
+                <div class="row form-group mb-2">
                     <label for="cantidad">
                         Cantidad (ml):
-                        <input type="number" id="cantidad" formControlName="cantidad" >
+                        <input type="number" id="cantidad" class="form-control" formControlName="cantidad" placeholder="Ej: 5">
                     </label>
                 </div>
-            </div>
+                <div class="row form-group mb-2">
+                    <label for="video">
+                        Video:
+                        <input type="file" id="video" class="form-control" formControlName="video" >
+                    </label>
+                </div>
+            <!-- </div> -->
         </form>
     </div>
     <!-- <div class="card-footer">

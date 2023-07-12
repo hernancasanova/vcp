@@ -16,6 +16,7 @@ export class RegisterConditionComponent implements OnInit {
     cantidad: new FormControl(''),
     condicion: new FormControl(''),
     fecha: new FormControl(''),
+    video: new FormControl(''),
   });
 
   constructor(private activatedRoute: ActivatedRoute, private service: ServicesService) { }
@@ -37,7 +38,8 @@ export class RegisterConditionComponent implements OnInit {
             this.registerForm.setValue({
               cantidad: r.cantidad,
               condicion: r.condicion,
-              fecha:r.fecha
+              fecha:r.fecha,
+              video:''
             })
           });
         }
@@ -54,17 +56,22 @@ export class RegisterConditionComponent implements OnInit {
     if(this.id!=0){
       register.id=this.id;
     }
+    const formData = new FormData();
     register.cantidad=(document.getElementById('cantidad') as HTMLInputElement).value;
     register.condicion=(document.getElementById('condicion') as HTMLInputElement).value;
     register.fecha=(document.getElementById('fecha') as HTMLInputElement).value;
+    formData.append('jsonregister',JSON.stringify(register))
+    formData.append('file', (document.getElementById('video') as HTMLInputElement)?.files?.item(0) as any);
     let response: any = await fetch("http://localhost:8005/register",
                         {method:"POST",
-                          body:JSON.stringify(register),
+                          body:formData
+                          //body:JSON.stringify(register),
+                          //body:JSON.stringify(register),
                          //Content-Type: application/json
-                         headers: {
-                          'Content-Type': 'application/json'
+                         //headers: {
+                          //'Content-Type': 'application/json'
                           // 'Content-Type': 'application/x-www-form-urlencoded',
-                        },
+                        //},
                         })
                         .then(x=>x.json())
                         .then(x=>{setTimeout(()=>{},2000);this.registrando=false; return x;})

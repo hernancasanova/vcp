@@ -56,7 +56,9 @@ export class VisualizerComponent implements OnInit {
           point: {
             events: {
               click(e) {
-                document.getElementById("video")?.setAttribute("src","http://localhost:4201/assets/videos/"+(e.point.category.toString().replace(/\//g,""))+".mp4")
+                //console.log("e: ",e)
+                document.getElementById("video")?.setAttribute("src","http://localhost:8005/videos/"+((e.point.index+1).toString().replace(/\//g,"")))
+                //document.getElementById("video")?.setAttribute("src","http://localhost:4201/assets/videos/"+((e.point.index+1).toString().replace(/\//g,""))+".mp4")
               }
             }
           }

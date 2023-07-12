@@ -23,19 +23,19 @@ public class Register implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	public Long id;
 	
 	@Column(name="fecha")
 	@Temporal(TemporalType.DATE)
-	private Date fecha;
+	public Date fecha;
 	
-	private String condicion;
+	public String condicion;
 	
-	private int cantidad;
+	public int cantidad;
     
 	
 	@Column(name="vid")
-	private boolean vid;
+	public boolean vid;
 	
 	public boolean isVid() {
 		return vid;
