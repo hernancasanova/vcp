@@ -23,7 +23,7 @@ services:
   db:
     image: postgres:13.1-alpine
     container_name: db
-    restart: unless-stopped
+    #restart: unless-stopped
     volumes:
       - ./postgre:/docker-entrypoint-initdb.d
     ports: 
