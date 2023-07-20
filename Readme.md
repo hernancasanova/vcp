@@ -1,6 +1,7 @@
 # Software requerido
 
 1. Docker
+2. Docker compose
 
 # Pasos para ejecutar la aplicación
 
