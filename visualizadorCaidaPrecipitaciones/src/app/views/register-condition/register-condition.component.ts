@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ServicesService } from 'src/app/services/services.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-condition',
@@ -74,7 +75,14 @@ export class RegisterConditionComponent implements OnInit {
                         //},
                         })
                         .then(x=>x.json())
-                        .then(x=>{setTimeout(()=>{},2000);this.registrando=false; return x;})
+                        .then(x=>{setTimeout(()=>{},2000);this.registrando=false;
+                        Swal.fire({
+                          title: '',
+                          text: "Registro creado exitosamente",
+                          icon: 'success',
+                          confirmButtonText: 'Aceptar'
+                        })
+                         return x;})
                         .catch(error=>console.log(error));
     console.log("response: ",response)
   }
